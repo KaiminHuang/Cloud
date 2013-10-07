@@ -14,7 +14,7 @@
           <option value="greek">Greek</option>
           <option value="french">French</option>
         </select>
-
+        <br>
         Big Map is going to be here soon
       </td>
       <td>Samll Map is goingt to be here soon</td>     
@@ -59,18 +59,16 @@
         <SPAN STYLE="background-color: #9999FF">Japanese</SPAN>
       </td>
     </tr>
-  </table>
-  
-
-
-
-
-
-  <form>
-    <label><input type="radio" name="mode" value="size"> Size</label>
-    <label><input type="radio" name="mode" value="count" checked> Count</label>
-  </form>
-  <div id = "wheelchart"><div>
+    <tr>
+      <td colspan=2>
+        <form>
+          <label><input type="radio" name="mode" value="size"> Size</label>
+          <label><input type="radio" name="mode" value="count" checked> Count</label>
+        </form>
+        <div id = "wheelchart"><div>
+        </td>
+      </tr>
+    </table>
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="./lib/nvd3/lib/d3.v3.js"></script>
@@ -92,17 +90,17 @@
       var option = selectDropDown[index];
       switch (option.value){
         case "english":
-          alert("eng");
-          break;
+        alert("eng");
+        break;
         case "spanish":
-          alert("span");
-          break;
+        alert("span");
+        break;
         case "french":
-          alert("fre");
-          break;
-         case "greek":
-          alert("gre");
-          break;
+        alert("fre");
+        break;
+        case "greek":
+        alert("gre");
+        break;
       }
     }
     var histcatexplong = [ 

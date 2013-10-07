@@ -7,7 +7,16 @@
   <h1>This is Analysis 4 LANGUAGES:</h1>
   <table border="1" style="width:100%;">
     <tr height="600px">
-      <td>Big Map is going to be here soon</td>
+      <td>
+        <select id="select">
+          <option value="english">English</option>
+          <option value="spanish">Spanish</option>
+          <option value="greek">Greek</option>
+          <option value="french">French</option>
+        </select>
+
+        Big Map is going to be here soon
+      </td>
       <td>Samll Map is goingt to be here soon</td>     
     </tr>
     <tr>
@@ -17,8 +26,14 @@
       </td>
     </tr>
     <tr>
-      <strong >TODO set color, and region size</strong>
-      <h2>Reagion related analysis:</h2>
+      <td colspan=2>
+        <h2>Reagion related analysis:</h2>
+        <strong >TODO set color, and region size</strong>
+      </td>
+    </tr>
+
+    <tr>
+
       <td>
         <SPAN STYLE="background-color: #9999FF">City</SPAN>
         <SPAN STYLE="background-color: #9999FF">Canterbury-Bankstown</SPAN>
@@ -71,8 +86,25 @@
     <script src="./lib/nvd3/src/models/stackedAreaChart.js"></script>
     <script src="./lib/nvd3/test/testScript.js"></script>
     <script>
-
-
+    var selectDropDown = document.getElementById('select');
+    selectDropDown.onchange= function(e) {
+      var index = selectDropDown.selectedIndex;
+      var option = selectDropDown[index];
+      switch (option.value){
+        case "english":
+          alert("eng");
+          break;
+        case "spanish":
+          alert("span");
+          break;
+        case "french":
+          alert("fre");
+          break;
+         case "greek":
+          alert("gre");
+          break;
+      }
+    }
     var histcatexplong = [ 
     { 
       "key" : "English" , 

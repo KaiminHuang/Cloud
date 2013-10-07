@@ -1,0 +1,193 @@
+{
+ "name": "Sydney",
+ "children": [
+  {
+   "name": "City",
+   "children": [
+     {"name": "English", "size":1000, "color":"red"},
+     {"name": "Spanish", "size":2000, "color":"red"},
+     {"name": "English", "size":3000, "color":"red"},
+     {"name": "English", "size":4000, "color":"red"},
+     {"name": "English", "size":5000, "color":"red"}
+    ],
+    "color":"#9999FF"
+  },
+  {
+   "name": "Canterbury-Bankstown",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Eastern Surburbs",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "The Forst",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Hills District",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Inner West",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Macarthur",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Northern Beaches",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Lower North Shore",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Upper North Shore",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Northern Surburbs",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Sourth-eastern Sydney",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "South-western Sydney",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Southern Sydney",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "St George",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Western Sydney",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  },
+  {
+   "name": "Greater Western Sydney",
+   "children": [
+     {"name": "English", "size":1000, "color":"blue"},
+     {"name": "Spanish", "size":2000, "color":"blue"},
+     {"name": "English", "size":3000, "color":"blue"},
+     {"name": "English", "size":4000, "color":"blue"},
+     {"name": "English", "size":5000, "color":"blue"}
+    ],
+    "color":"blue"
+  }
+
+  ]
+}

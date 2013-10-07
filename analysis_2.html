@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="./lib/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
+<style>
+
+body {
+	overflow-y:scroll;
+}
+
+text {
+	font: 12px sans-serif;
+}
+
+.mypiechart {
+	width: 500px;
+	border: 2px;
+}
+</style>
+<body class='with-3d-shadow with-transitions'>
+
+	<h1>This is Analysis 2 SENTIMENT:</h1>
+
+	<table border="1" style="width:100%;">
+		<tr height="600px">
+			<td>Big Map is going to be here soon</td>
+			<td>Samll Map is goingt to be here soon</td>     
+		</tr>
+		<tr height ="600px">
+			<th rowspan="2" style="width:50%;"><svg id="test1" class="mypiechart"></th>
+			<td height = "200px"><h >TOP 5 positive tweets<h></td>
+		</tr>
+		<tr>
+			<td height="200px"><h>TOP 5 negative tweets</h></td>
+		</tr>
+	</table>
+
+
+	<script src="./lib/nvd3/lib/d3.v3.js"></script>
+	<script src="./lib/nvd3/nv.d3.js"></script>
+	<script src="./lib/nvd3/src/models/legend.js"></script>
+	<script src="./lib/nvd3/src/models/pie.js"></script>
+	<script src="./lib/nvd3/src/models/pieChart.js"></script>
+	<script src="./lib/nvd3/src/utils.js"></script>
+	<script>
+
+	var testdata = [
+	{
+		key: "Positive",
+		y: 5
+	},
+	{
+		key: "Negative",
+		y: 2
+	},
+	{
+		key: "Medium",
+		y: 9
+	}
+	];
+
+
+	nv.addGraph(function() {
+		var width = 500,
+		height = 500;
+
+		var chart = nv.models.pieChart()
+		.x(function(d) { return d.key })
+		.y(function(d) { return d.y })
+		.color(d3.scale.category10().range())
+		.width(width)
+		.height(height);
+
+		d3.select("#test1")
+		.datum(testdata)
+		.transition().duration(1200)
+		.attr('width', width)
+		.attr('height', height)
+		.call(chart);
+
+		chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+		return chart;
+	});
+	</script>

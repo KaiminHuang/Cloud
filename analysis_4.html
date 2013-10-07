@@ -16,10 +16,11 @@ span {
     <tr height="600px">
       <td>
         <select id="select">
-          <option value="english">English</option>
+          <option value="english" >English</option>
           <option value="spanish">Spanish</option>
-          <option value="greek">Greek</option>
-          <option value="french">French</option>
+          <option value="franch" >Franch</option>
+          <option value="greek" >Greek</option>
+          <option value="japanese" >Japanese</option>
         </select>
         <br>
         Big Map is going to be here soon
@@ -251,7 +252,7 @@ var arc = d3.svg.arc()
 .innerRadius(function(d) { return Math.sqrt(d.y); })
 .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
-d3.json("./test.json", function(error, root) {
+d3.json("./data/test.json", function(error, root) {
   var path = svg.datum(root).selectAll("path")
   .data(partition.nodes)
   .enter().append("path")

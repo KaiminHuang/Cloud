@@ -25,15 +25,24 @@ text {
 <script>
 
 var fill = d3.scale.category20();
+var data = [
+              {word: "Hello", num:4}, 
+              {word: "world", num:40}, 
+              {word: "normally", num:14}, 
+              {word: "you", num:1}, 
+              {word: "want", num:23}, 
+              {word: "more", num:45}, 
+              {word: "words", num:24}, 
+              {word: "than", num:100},
+              {word: "this", num:123},
+]
 
 d3.layout.cloud().size([2500, 300])
-.words([
-  "Hello", "world", "normally", "you", "want", "more", "words",
-  "than", "this"].map(function(d) {
-    return {text: d, size: 10 + Math.random() * 90};
+.words(data.map(function(d) {
+    return {text: d.word, size: d.num };//10 + Math.random() * 90
   }))
 .padding(5)
-.rotate(function() { return ~~(Math.random() * 2) * 90; })
+.rotate(function() { return ~~(Math.random() * 2) * 45; })
 .font("Impact")
 .fontSize(function(d) { return d.size; })
 .on("end", draw)

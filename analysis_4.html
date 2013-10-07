@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<style type="text/css">
 
+span {
+  display: inline-block;
+  width: 300px;
+}
+
+</style>
 <link href="./lib/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
 <link href="./lib/nvd3/test/teststyle.css" rel="stylesheet" type='text/css'>
 <body>
@@ -9,10 +16,11 @@
     <tr height="600px">
       <td>
         <select id="select">
-          <option value="english">English</option>
+          <option value="english" >English</option>
           <option value="spanish">Spanish</option>
-          <option value="greek">Greek</option>
-          <option value="french">French</option>
+          <option value="franch" >Franch</option>
+          <option value="greek" >Greek</option>
+          <option value="japanese" >Japanese</option>
         </select>
         <br>
         Big Map is going to be here soon
@@ -35,28 +43,31 @@
     <tr>
 
       <td>
-        <SPAN STYLE="background-color: #9999FF">City</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Canterbury-Bankstown</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Eastern Surburbs</SPAN>
-        <SPAN STYLE="background-color: #9999FF">The Forst</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Hills District</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Inner West</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Macarthur</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Northern Beaches</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Lower North Shore</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Upper North Shore</SPAN>
-        <SPAN STYLE="background-color: #9999FF">"Northern Surburbs</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Sourth-eastern Sydney</SPAN>
-        <SPAN STYLE="background-color: #9999FF">South-western Sydney</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Southern Sydney</SPAN>
-        <SPAN STYLE="background-color: #9999FF">St George</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Western Sydney</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Greater Western Sydney</SPAN>
+        <SPAN STYLE="background-color: #fc9272">City</SPAN>
+        <SPAN STYLE="background-color: #bcbddc">Canterbury-Bankstown</SPAN>
+        <SPAN STYLE="background-color: #fdae6b">Eastern Surburbs</SPAN>
+        <SPAN STYLE="background-color: #feb24c">The Forst</SPAN>
+        <SPAN STYLE="background-color: #fec44f">Hills District</SPAN>
+        <SPAN STYLE="background-color: #7fcdbb">Inner West</SPAN>
+        <SPAN STYLE="background-color: #addd8e">Macarthur</SPAN>
+        <SPAN STYLE="background-color: #fa9fb5">Northern Beaches</SPAN>
+        <SPAN STYLE="background-color: #c994c7">Lower North Shore</SPAN>
+        <SPAN STYLE="background-color: #bdbdbd">Upper North Shore</SPAN>
+        <SPAN STYLE="background-color: #a1d99b">"Northern Surburbs</SPAN>
+        <SPAN STYLE="background-color: #9ecae1">Sourth-eastern Sydney</SPAN>
+        <SPAN STYLE="background-color: #a6bddb">South-western Sydney</SPAN>
+        <SPAN STYLE="background-color: #a6bddb">Southern Sydney</SPAN>
+        <SPAN STYLE="background-color: #fdbb84">St George</SPAN>
+        <SPAN STYLE="background-color: #a8ddb5">Western Sydney</SPAN>
+        <SPAN STYLE="background-color: #9ebcda">Greater Western Sydney</SPAN>
         
       </td>
       <td width = "50%">
-        <SPAN STYLE="background-color: #9999FF">English</SPAN>
-        <SPAN STYLE="background-color: #9999FF">Japanese</SPAN>
+        <SPAN STYLE="background-color: #f03b20">English</SPAN>
+        <SPAN STYLE="background-color: #fee8c8">Spanish</SPAN>
+        <SPAN STYLE="background-color: #8856a7">Franch</SPAN>
+        <SPAN STYLE="background-color: #1c9099">Greek</SPAN>
+        <SPAN STYLE="background-color: #3182bd">Japanese</SPAN>
       </td>
     </tr>
     <tr>
@@ -143,7 +154,15 @@
     ];
 
 
-
+    function arcTween(a) {
+      var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+      return function(t) {
+        var b = i(t);
+        a.x0 = b.x;
+        a.dx0 = b.dx;
+        return arc(b);
+      };
+    }
 
 
 
@@ -233,7 +252,7 @@ var arc = d3.svg.arc()
 .innerRadius(function(d) { return Math.sqrt(d.y); })
 .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
-d3.json("./test.json", function(error, root) {
+d3.json("./data/test.json", function(error, root) {
   var path = svg.datum(root).selectAll("path")
   .data(partition.nodes)
   .enter().append("path")

@@ -1,0 +1,7 @@
+{
+	"extent":[150.821457,-34.026391,151.319962,-33.724244],
+	"features":[{"geometry":{"type":"point","coordinates":[151.259400,-33.787657]},"sentiment":8},
+				{"geometry":{"type":"point","coordinates":[151.159409,-33.787548]},"sentiment":9},
+				{"geometry":{"type":"point","coordinates":[151.159419,-33.788550]},"sentiment":2},
+				{"geometry":{"type":"point","coordinates":[150.922394,-33.845802]},"sentiment":0}]
+}

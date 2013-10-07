@@ -1,0 +1,20 @@
+
+#Add this to httpd.conf if it not already there
+LoadModule proxy_module modules/mod_proxy.soLoadModule proxy_http_module modules/mod_proxy_http.so
+
+#Add this to httpd.conf
+#Reverse proxy setup
+ProxyRequests Off
+ProxyPass /couchdb http://localhost:5984
+ProxyPassReverse /couchdb http://localhost:5984
+
+<Location "/couchdb">
+  # Configurations specific to this location. Add what you need.
+  # For instance, you can add mod_proxy_html directives to fix
+  # links in the HTML code. See link at end of this page about using
+  # mod_proxy_html.
+
+  # Allow access to this proxied URL location for everyone.
+  Order allow,deny
+  Allow from all
+</Location>

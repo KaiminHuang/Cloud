@@ -38,7 +38,7 @@ var data = [
 {word: "this", num:123},
 ]
 
-d3.layout.cloud().size([2500, 300])
+d3.layout.cloud().size([300, 300])
 .words(data.map(function(d) {
     return {text: d.word, size: d.num };//10 + Math.random() * 90
   }))

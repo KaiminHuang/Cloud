@@ -10,6 +10,7 @@ span {
 </style>
 <link href="./lib/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
 <link href="./lib/nvd3/test/teststyle.css" rel="stylesheet" type='text/css'>
+
 <body>
   <h1>This is Analysis 4 LANGUAGES:</h1>
   <table border="1" style="width:100%;">
@@ -81,7 +82,6 @@ span {
       </tr>
     </table>
 
-    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="./lib/nvd3/lib/d3.v3.js"></script>
     <script src="./lib/nvd3/nv.d3.js"></script>
     <script src="./lib/nvd3/src/utils.js"></script>
@@ -95,6 +95,8 @@ span {
     <script src="./lib/nvd3/src/models/stackedAreaChart.js"></script>
     <script src="./lib/nvd3/test/testScript.js"></script>
     <script>
+
+
     var selectDropDown = document.getElementById('select');
     selectDropDown.onchange= function(e) {
       var index = selectDropDown.selectedIndex;
@@ -252,7 +254,7 @@ var arc = d3.svg.arc()
 .innerRadius(function(d) { return Math.sqrt(d.y); })
 .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
-d3.json("./data/test.json", function(error, root) {
+d3.json("./data/languages.json", function(error, root) {
   var path = svg.datum(root).selectAll("path")
   .data(partition.nodes)
   .enter().append("path")

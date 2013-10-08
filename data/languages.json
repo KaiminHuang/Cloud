@@ -13,7 +13,7 @@
     "color":"#fc9272"
   },
   {
-   "name": "Canterbury-Bankstown",
+   "name": "East",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -24,7 +24,7 @@
     "color":"#bcbddc"
   },
   {
-   "name": "Eastern Surburbs",
+   "name": "North East",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -35,7 +35,7 @@
     "color":"#fdae6b"
   },
   {
-   "name": "The Forst",
+   "name": "Inner North",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},

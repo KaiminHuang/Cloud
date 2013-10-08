@@ -27,13 +27,19 @@ text {
   <div class='navigation'>
     <h1>This is Analysis 1 COUNTING:</h1>
   </div>
+
+  <button type="button" onclick="dayFunction('pre')">Previous Day</button>
+  <button type="button" onclick="dayFunction('next')">Next Day</button>
+  <div id ="dayTime">Wed Sep 19 2013</div>
+
+
   <table border="1" width = 100%>
-        <tr height="630px">
-                        <td colspan="2"><iframe src="counting.html" style="width:100%; height:100%;">
-                        Here You should be able to see the map, if not; Try another browser that supports iFrame.
-                </iframe></td>
-                </tr>
-        <tr>
+    <tr height="630px">
+      <td colspan="2"><iframe src="counting.html" style="width:100%; height:100%;">
+        Here You should be able to see the map, if not; Try another browser that supports iFrame.
+      </iframe></td>
+    </tr>
+    <tr>
       <td colspan=2>
         <div id="chart1" class='chart with-transitions'>
           <svg></svg>
@@ -55,16 +61,15 @@ text {
   <script type="text/javascript" src="js/counting.js"></script>
   <script>
 
+  var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 
-// Wrapping in nv.addGraph allows for '0 timeout render', stores rendered charts in nv.graphs, and may do more in the future... it's NOT required
-
-nv.addGraph(function() {  
- var chart = nv.models.cumulativeLineChart()
- .useInteractiveGuideline(true)
- .x(function(d) { return d[0] })
- .y(function(d) { return d[1] })
- .color(d3.scale.category10().range())
- .average(function(d) { return d.mean/100; })
+  nv.addGraph(function() {  
+   var chart = nv.models.cumulativeLineChart()
+   .useInteractiveGuideline(true)
+   .x(function(d) { return d[0] })
+   .y(function(d) { return d[1] })
+   .color(d3.scale.category10().range())
+   .average(function(d) { return d.mean/100; })
  //.transitionDuration(300)
  .clipVoronoi(false)
  .showControls(false);
@@ -91,37 +96,34 @@ nv.addGraph(function() {
 
 
 
-function flatTestData() {
-  return [
-  {
-    key: "Snakes",
-    values: [0,1,2,3,4,5,6,7,8,9].map(function(d) {
-      var currentDate = new Date();
-      currentDate.setDate(currentDate.getDate() + d);
-      return [currentDate, 0]
-    })
+  function flatTestData() {
+    return [
+    {
+      key: "Snakes",
+      values: [0,1,2,3,4,5,6,7,8,9].map(function(d) {
+        var currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + d);
+        return [currentDate, 0]
+      })
+    }
+    ];
   }
-  ];
-}
 
-
-function cumulativeTestData() {
-
-
-
-  return [
-
-  {
-    key: "Region 1",
-    values: [ [ 1083297600000 , 1] , [ 1085976000000 , 2] , [ 1088568000000 , 3]]
-    ,
-    mean: 250
+  function dayFunction(var1)
+  { 
+  // 1379512800000 18th
+  if (ini.getTime() >= 1379512800000 ){
+    switch (var1){
+      case "pre":
+      ini.setTime(ini.getTime() - 24 * 60 * 60 *1000)
+      document.getElementById("dayTime").innerHTML = ini.toDateString();
+      break;
+      case "next":
+      ini.setTime(ini.getTime() + 24 * 60 * 60 *1000)
+      document.getElementById("dayTime").innerHTML = ini.toDateString();
+      break;
+    }
   }
-  ];
-
-
-
-
 }
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  
+
 </head>
 <meta charset="utf-8">
 <style type="text/css">
@@ -16,6 +16,11 @@ span {
 
 <body>
   <h1>This is Analysis 4 LANGUAGES:</h1>
+
+  <button type="button" onclick="dayFunction('pre')">Previous Day</button>
+  <button type="button" onclick="dayFunction('next')">Next Day</button>
+  <div id ="dayTime">Wed Sep 19 2013</div>
+
   <table border="1" style="width:100%;">
     <tr height="600px">
       <td>
@@ -48,8 +53,8 @@ span {
 
       <td>
         <SPAN STYLE="background-color: #fc9272">City</SPAN>
-        <SPAN STYLE="background-color: #bcbddc">Canterbury-Bankstown</SPAN>
-        <SPAN STYLE="background-color: #fdae6b">Eastern Surburbs</SPAN>
+        <SPAN STYLE="background-color: #bcbddc">East</SPAN>
+        <SPAN STYLE="background-color: #fdae6b">North East</SPAN>
         <SPAN STYLE="background-color: #feb24c">The Forst</SPAN>
         <SPAN STYLE="background-color: #fec44f">Hills District</SPAN>
         <SPAN STYLE="background-color: #7fcdbb">Inner West</SPAN>
@@ -64,7 +69,6 @@ span {
         <SPAN STYLE="background-color: #fdbb84">St George</SPAN>
         <SPAN STYLE="background-color: #a8ddb5">Western Sydney</SPAN>
         <SPAN STYLE="background-color: #9ebcda">Greater Western Sydney</SPAN>
-        
       </td>
       <td width = "50%">
         <SPAN STYLE="background-color: #f03b20">English</SPAN>
@@ -99,7 +103,7 @@ span {
     <script src="./lib/nvd3/test/testScript.js"></script>
     
     <script>
-
+    var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 
     var selectDropDown = document.getElementById('select');
     selectDropDown.onchange= function(e) {
@@ -288,5 +292,20 @@ function stash(d) {
   d.x0 = d.x;
   d.dx0 = d.dx;
 }
-
+  function dayFunction(var1)
+  { 
+  // 1379512800000 18th
+  if (ini.getTime() >= 1379512800000 ){
+    switch (var1){
+      case "pre":
+      ini.setTime(ini.getTime() - 24 * 60 * 60 *1000)
+      document.getElementById("dayTime").innerHTML = ini.toDateString();
+      break;
+      case "next":
+      ini.setTime(ini.getTime() + 24 * 60 * 60 *1000)
+      document.getElementById("dayTime").innerHTML = ini.toDateString();
+      break;
+    }
+  }
+}
 </script>

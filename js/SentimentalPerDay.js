@@ -43,7 +43,7 @@ function sentimentalPerDay(year, month,day) {
 		"extent" : [150.821457,-34.026391,151.319962,-33.724244],
 		"features" : []
 	};
-	alert (json.rows.length);	
+//	alert (json.rows.length);	
 	for (var i = 0; i < json.rows.length; i++) {
 		var point = {
 			"geometry": {
@@ -85,7 +85,7 @@ function sentimental() {
 		"extent" : [150.821457,-34.026391,151.319962,-33.724244],
 		"features" : []
 	};
-	alert (json.rows.length);	
+//	alert (json.rows.length);	
 	for (var i = 0; i < json.rows.length; i++) {
 		var point = {
 			"geometry": {

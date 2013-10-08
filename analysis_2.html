@@ -42,6 +42,7 @@ text {
 	<script src="./lib/nvd3/src/models/pie.js"></script>
 	<script src="./lib/nvd3/src/models/pieChart.js"></script>
 	<script src="./lib/nvd3/src/utils.js"></script>
+	<script src="./js/sentimentalTotal.js"></script>
 	<script>
 
 	var testdata = [
@@ -59,7 +60,7 @@ text {
 	}
 	];
 
-
+	testdata = sentimentalTotal();
 	nv.addGraph(function() {
 		var width = 500,
 		height = 500;

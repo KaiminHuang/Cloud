@@ -97,7 +97,8 @@ span {
     <script src="./lib/nvd3/src/models/stackedArea.js"></script>
     <script src="./lib/nvd3/src/models/stackedAreaChart.js"></script>
     <script src="./lib/nvd3/test/testScript.js"></script>
-    
+    <script src="./js/jquery/jquery.js"></script>
+    <script src="./js/language.js"></script>
     <script>
     var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 
@@ -120,6 +121,7 @@ span {
         break;
       }
     }
+
     var histcatexplong = [ 
     { 
       "key" : "English" , 
@@ -259,6 +261,7 @@ var arc = d3.svg.arc()
 .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
 d3.json("./data/languages.json", function(error, root) {
+  root = getLanguageTweetsPerRegion()
   var path = svg.datum(root).selectAll("path")
   .data(partition.nodes)
   .enter().append("path")

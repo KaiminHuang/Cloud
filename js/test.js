@@ -1,5 +1,5 @@
 
-var server = 'http://localhost/couchdb/';
+var server = 'http://115.146.85.154/couchdb/';
 
 function onload() {
 	

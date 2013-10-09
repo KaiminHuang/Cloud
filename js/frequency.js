@@ -1,10 +1,10 @@
-var server = "http://115.146.94.169/couchdb/";
+var server = "http://115.146.85.154/couchdb/";
 function getWordFrequency() {
 	var json = '';	
 	$.ajax({
 		  type: 'GET',
 		  dataType: 'json',
-		  url: server + 'twittering_union/_design/words/_view/frequency?group=true',
+		  url: server + 'twittering_replica/_design/words/_view/frequency?group=true',
 		  success: function(result) {
 			  json = result;
 		  },
@@ -28,9 +28,9 @@ function getWordFrequency() {
 		top.push(data[i]);
 	}
 	
-	top.forEach(function(el){
-		document.write(el.word + " " + el.num + "<br />");	
-	});
+	// top.forEach(function(el){
+	// 	document.write(el.word + " " + el.num + "<br />");	
+	// });
 	return top;
 	
 	

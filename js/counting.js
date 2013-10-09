@@ -3,7 +3,7 @@
  * first element is date in the format YYYY-MM-DD, and the second the
  * number of tweets e.g. res[0][0] = '2013-08-30' and res[0][1] = 500.
  */
- var server = "http://115.146.95.43/couchdb/"
+ var server = "http://http://115.146.85.154/couchdb/"
 function getNumberTweetsPerDay() {
 	var json = '';
 	$.ajax({

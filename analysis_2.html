@@ -48,6 +48,7 @@ text {
 	<script src="./lib/nvd3/src/models/pie.js"></script>
 	<script src="./lib/nvd3/src/models/pieChart.js"></script>
 	<script src="./lib/nvd3/src/utils.js"></script>
+	<script src="./js/jquery/jquery.js"></script>
 	<script src="./js/sentimentalTotal.js"></script>
 	<script>
 	var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
@@ -66,7 +67,9 @@ text {
 	}
 	];
 
+	// testdata = sentimentalTotal();
 	testdata = sentimentalTotal();
+	console.error("testdata",testdata)
 
 	nv.addGraph(function() {
 		var width = 500,

@@ -1,4 +1,4 @@
-var server = 'http://115.146.95.43/couchdb';
+var server = 'http://115.146.85.154/couchdb';
 //This function is just for text the other functions
 function onload() {
 
@@ -43,7 +43,7 @@ function sentimentalPerDay(year, month,day) {
 		"extent" : [150.821457,-34.026391,151.319962,-33.724244],
 		"features" : []
 	};
-//	alert (json.rows.length);	
+	alert (json.rows.length);	
 	for (var i = 0; i < json.rows.length; i++) {
 		var point = {
 			"geometry": {
@@ -85,14 +85,14 @@ function sentimental() {
 		"extent" : [150.821457,-34.026391,151.319962,-33.724244],
 		"features" : []
 	};
-//	alert (json.rows.length);	
+	alert (json.rows.length);	
 	for (var i = 0; i < json.rows.length; i++) {
 		var point = {
 			"geometry": {
 				"type" : "point",
 				"coordinates" : [json.rows[i].value[1],json.rows[i].value[2]],
-			},
-			"sentiment" : json.rows[i].value[3]		
+				"sentiment" : json.rows[i].value[3]
+			}		
 		}
 		//alert('Linea:'+ point.geometry.sentiment + "\n" + point.geometry.coordinates);
 		res.features.push(point);

@@ -23,6 +23,8 @@ text {
 
 <script src="./lib/d3/d3.js"></script>
 <script src="./lib/d3-cloud-master/d3.layout.cloud.js"></script>
+<script src="./js/jquery/jquery.js"></script>
+<script src="./js/frequency.js"></script>
 <script>
 
 var fill = d3.scale.category20();
@@ -37,6 +39,8 @@ var data = [
 {word: "than", num:100},
 {word: "this", num:123},
 ]
+var data = getWordFrequency();
+console.error("data",data)
 
 d3.layout.cloud().size([300, 300])
 .words(data.map(function(d) {

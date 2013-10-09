@@ -64,7 +64,7 @@ function sentimentalPerDay(year, month,day) {
 //Input: No parameters
 //Output: Json object 
 function sentimental() {
-	alert("I'm Called");	
+	//alert("I'm Called");	
 	var json = '';
 	$.ajax({
 		  type: 'GET',

@@ -24,12 +24,12 @@ function getWordFrequency() {
 	});
 
 	var top = [];
-	for (var i = 0; i < 2000; i++) {
+	for (var i = 0; i < 100; i++) {
 		top.push(data[i]);
 	}
 	
 	// top.forEach(function(el){
-	// 	document.write(el.word + " " + el.num + "<br />");	
+	// 	document.write(el.word +"<br />");	
 	// });
 	return top;
 	

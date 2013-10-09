@@ -61,6 +61,10 @@ function getNumberTweetsPerHour(year, month, day) {
 	    }
 	]
 	
+
+	var ini = new Date(year, month, day, 0, 0, 0, 0);
+	data[0].values.push([ini.getTime(), 0]);
+
 	for (var i = 0; i < json.rows.length; i++) {
 		var k = json.rows[i].key;
 		var v = json.rows[i].value;

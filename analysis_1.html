@@ -28,9 +28,7 @@ text {
     <h1>This is Analysis 1 COUNTING:</h1>
   </div>
 
-  <button type="button" onclick="dayFunction('pre')">Previous Day</button>
-  <button type="button" onclick="dayFunction('next')">Next Day</button>
-  <div id ="dayTime">Wed Sep 19 2013</div>
+
 
 
   <table border="0" width = 100%>
@@ -40,40 +38,47 @@ text {
         Here You should be able to see the map, if not; Try another browser that supports iFrame.
       </iframe>
     </td>
-    </tr>
-    <tr>
-      <td colspan=2>
-        <div id="chart1" class='chart with-transitions'>
-          <svg></svg>
-        </div>
-      </td>
-    </tr>
-  </table>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button type="button" onclick="dayFunction('pre')">Previous Day</button>
+      <button type="button" onclick="dayFunction('next')">Next Day</button>
+      <button type="button" onclick="dayFunction('all')">Show All Data</button>
+      <div id ="dayTime">Wed Sep 19 2013</div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan=2>
+      <div id="chart1" class='chart with-transitions'>
+        <svg></svg>
+      </div>
+    </td>
+  </tr>
+</table>
 
-  <script src="./lib/nvd3/lib/d3.v3.js"></script>
-  <script src="./lib/nvd3/nv.d3.js"></script>
-  <script src="./lib/nvd3/src/tooltip.js"></script>
-  <script src="./lib/nvd3/src/utils.js"></script>
-  <script src="./lib/nvd3/src/interactiveLayer.js"></script>
-  <script src="./lib/nvd3/src/models/legend.js"></script>
-  <script src="./lib/nvd3/src/models/axis.js"></script>
-  <script src="./lib/nvd3/src/models/scatter.js"></script>
-  <script src="./lib/nvd3/src/models/line.js"></script>
-  <script src="./lib/nvd3/src/models/cumulativeLineChart.js"></script>
-  <script src="./js/jquery/jquery.js"></script>
-  <script type="text/javascript" src="js/counting.js"></script>
-  <script>
+<script src="./lib/nvd3/lib/d3.v3.js"></script>
+<script src="./lib/nvd3/nv.d3.js"></script>
+<script src="./lib/nvd3/src/tooltip.js"></script>
+<script src="./lib/nvd3/src/utils.js"></script>
+<script src="./lib/nvd3/src/interactiveLayer.js"></script>
+<script src="./lib/nvd3/src/models/legend.js"></script>
+<script src="./lib/nvd3/src/models/axis.js"></script>
+<script src="./lib/nvd3/src/models/scatter.js"></script>
+<script src="./lib/nvd3/src/models/line.js"></script>
+<script src="./lib/nvd3/src/models/cumulativeLineChart.js"></script>
+<script src="./js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/counting.js"></script>
+<script>
 
-  var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
+var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 
-  nv.addGraph(function() {  
-   var chart = nv.models.cumulativeLineChart()
-   .useInteractiveGuideline(true)
-   .x(function(d) { return d[0] })
-   .y(function(d) { return d[1] })
-   .color(d3.scale.category10().range())
-   .average(function(d) { return d.mean/100; })
- //.transitionDuration(300)
+nv.addGraph(function() {  
+ var chart = nv.models.cumulativeLineChart()
+ .useInteractiveGuideline(true)
+ .x(function(d) { return d[0] })
+ .y(function(d) { return d[1] })
+ .color(d3.scale.category10().range())
+ .average(function(d) { return d.mean/100; })
  .clipVoronoi(false)
  .showControls(false);
 
@@ -99,32 +104,125 @@ text {
 
 
 
-  function flatTestData() {
-    return [
-    {
-      key: "Snakes",
-      values: [0,1,2,3,4,5,6,7,8,9].map(function(d) {
-        var currentDate = new Date();
-        currentDate.setDate(currentDate.getDate() + d);
-        return [currentDate, 0]
-      })
-    }
-    ];
+function flatTestData() {
+  return [
+  {
+    key: "Snakes",
+    values: [0,1,2,3,4,5,6,7,8,9].map(function(d) {
+      var currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() + d);
+      return [currentDate, 0]
+    })
   }
+  ];
+}
 
-  function dayFunction(var1)
-  { 
+function dayFunction(var1)
+{ 
   // 1379512800000 18th
   if (ini.getTime() >= 1379512800000 ){
     switch (var1){
       case "pre":
+
+
       ini.setTime(ini.getTime() - 24 * 60 * 60 *1000)
       document.getElementById("dayTime").innerHTML = ini.toDateString();
+
+
+      nv.addGraph(function() {  
+       var chart = nv.models.cumulativeLineChart()
+       .useInteractiveGuideline(true)
+       .x(function(d) { return d[0] })
+       .y(function(d) { return d[1] })
+       .color(d3.scale.category10().range())
+       .average(function(d) { return d.mean/100; })
+       .clipVoronoi(false)
+       .showControls(false);
+
+       chart.xAxis
+       .tickFormat(function(d) {
+        return d3.time.format('%H/%d/%m')(new Date(d))
+      });
+
+       chart.yAxis
+       .tickFormat(d3.format(',1'));
+       d3.select('#chart1 svg')
+          .datum(getNumberTweetsPerHour(ini.getFullYear(), (parseInt(ini.getMonth())+1), ini.getDate()))//getNumberTweetsPerDay
+          .call(chart);
+          nv.utils.windowResize(chart.update);
+          chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+          return chart;
+        });
+
       break;
+
+
       case "next":
+
+
+
       ini.setTime(ini.getTime() + 24 * 60 * 60 *1000)
       document.getElementById("dayTime").innerHTML = ini.toDateString();
+
+
+      nv.addGraph(function() {  
+       var chart = nv.models.cumulativeLineChart()
+       .useInteractiveGuideline(true)
+       .x(function(d) { return d[0] })
+       .y(function(d) { return d[1] })
+       .color(d3.scale.category10().range())
+       .average(function(d) { return d.mean/100; })
+       .clipVoronoi(false)
+       .showControls(false);
+
+       chart.xAxis
+       .tickFormat(function(d) {
+        return d3.time.format('%H/%d/%m')(new Date(d))
+      });
+       chart.yAxis
+       .tickFormat(d3.format(',1'));
+       d3.select('#chart1 svg')
+          .datum(getNumberTweetsPerHour(ini.getFullYear(), (parseInt(ini.getMonth())+1), ini.getDate()))//getNumberTweetsPerDay
+          .call(chart);
+          nv.utils.windowResize(chart.update);
+          chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+          return chart;
+        });
       break;
+
+      case "all":
+nv.addGraph(function() {  
+ var chart = nv.models.cumulativeLineChart()
+ .useInteractiveGuideline(true)
+ .x(function(d) { return d[0] })
+ .y(function(d) { return d[1] })
+ .color(d3.scale.category10().range())
+ .average(function(d) { return d.mean/100; })
+ .clipVoronoi(false)
+ .showControls(false);
+
+ chart.xAxis
+ .tickFormat(function(d) {
+  return d3.time.format('%m/%d/%y')(new Date(d))
+});
+
+ chart.yAxis
+ .tickFormat(d3.format(',1'));
+
+ d3.select('#chart1 svg')
+ .datum(getNumberTweetsPerDay())//getNumberTweetsPerDay
+ .call(chart);
+
+  //TODO: Figure out a good way to do this automatically
+  nv.utils.windowResize(chart.update);
+
+  chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+  return chart;
+});
+
+      break;
+
     }
   }
 }

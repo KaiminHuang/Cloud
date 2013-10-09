@@ -22,10 +22,45 @@ span {
   <div id ="dayTime">Wed Sep 19 2013</div>
 
 	<select id="select">
-          <option value="en" >English</option>
-          <option value="es">Spanish</option>
-          <option value="fa" >Persian</option>
-          <option value="ar" >Arabic</option>
+        <option value="ar" >Arabic</option>
+	<option value="bg" >"Bulgarian"</option>
+	<option value="bn" >"Bengali"</option>
+	<option value="da" >"Danish"</option>
+	<option value="de" >"German"</option>
+	<option value="el" >"Greek"</option>
+	<option value="en" selected="selected" >"English"</option>
+	<option value="es" >"Spanish"</option>
+	<option value="et" >"Estonian"</option>
+	<option value="fa" >"Persian"</option>
+	<option value="fi" >"Finish"</option>
+	<option value="fr" >"French"</option>
+	<option value="he" >"Hebrew"</option>
+	<option value="hi" >"Hindi"</option>
+	<option value="ht" >"Haitian Creole"</option>
+	<option value="hu" >"Hungarian"</option>
+	<option value="id" >"Indonesian"</option>
+	<option value="it" >"Italian"</option>
+	<option value="ja" >"Japanese"</option>
+	<option value="ko" >"Korean"</option>
+	<option value="lt" >"Lithuanian"</option>
+	<option value="lv" >"Latvian"</option>
+	<option value="ne" >"Nepali"</option>
+	<option value="nl" >"Dutch"</option>
+	<option value="no" >"Norweigan"</option>
+	<option value="pl" >"Polish"</option>
+	<option value="pt" >"Portuguese"</option>
+	<option value="ru" >"Russian"</option>
+	<option value="sk" >"Slovak"</option>
+	<option value="sl" >"Slovenian"</option>
+	<option value="sv" >"Swedish"</option>
+	<option value="ta" >"Tamil"</option>
+	<option value="th" >"Thai"</option>
+	<option value="tl" >"Tagalog"</option>
+	<option value="tr" >"Turkish"</option>
+	<option value="und" >"Undetermined"</option>
+	<option value="ur" >"Urdu"</option>
+	<option value="vi" >"Vietnamese"</option>
+	<option value="zh" >"Chinese"</option>
         </select>
 
   <table border="1" style="width:100%;">
@@ -106,19 +141,8 @@ span {
     selectDropDown.onchange= function(e) {
       var index = selectDropDown.selectedIndex;
       var option = selectDropDown[index];
-      switch (option.value){
-        case "en":
-	document.getElementById('mapContainer').innerHTML = " <iframe src=\"language.html?lang=en\" style=\"width:100%; height:100%;\"> Here You should be able to see the map, if not; Try another browser that supports iFrame. </iframe>";
-        break;
-        case "es":
-	document.getElementById('mapContainer').innerHTML = " <iframe src=\"language.html?lang=es\" style=\"width:100%; height:100%;\"> Here You should be able to see the map, if not; Try another browser that supports iFrame. </iframe>";
-        break;
-        case "fa":
-        document.getElementById('mapContainer').innerHTML = " <iframe src=\"language.html?lang=fa\" style=\"width:100%; height:100%;\"> Here You should be able to see the map, if not; Try another browser that supports iFrame. </iframe>";
-        break;
-        case "ar":
-        document.getElementById('mapContainer').innerHTML = " <iframe src=\"language.html?lang=ar\" style=\"width:100%; height:100%;\"> Here You should be able to see the map, if not; Try another browser that supports iFrame. </iframe>";
-        break;
+	document.getElementById('mapContainer').innerHTML = "maps";
+     // document.getElementById('mapContainer').innerHTML = " <iframe src=\"language.html?lang="+option.value+"\" style=\"width:100%; height:100%;\"> Here You should be able to see the map, if not; Try another browser that supports iFrame. </iframe>";
       }
     }
 

@@ -110,8 +110,8 @@
 			{
 				d3.json( dataURL, function( d )
 				{
-					//alert(language);
-					d = getD3JSONLanguage(language);
+					alert(language);
+				//	d = getD3JSONLanguage(language);
 
 					var bounds = d.extent,
 						hasGeo = d.features.filter( function(wm)

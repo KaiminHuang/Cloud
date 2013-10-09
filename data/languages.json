@@ -13,7 +13,7 @@
     "color":"#fc9272"
   },
   {
-   "name": "Canterbury-Bankstown",
+   "name": "East",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -24,7 +24,7 @@
     "color":"#bcbddc"
   },
   {
-   "name": "Eastern Surburbs",
+   "name": "North East",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -35,7 +35,7 @@
     "color":"#fdae6b"
   },
   {
-   "name": "The Forst",
+   "name": "Inner North",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -46,7 +46,7 @@
     "color":"#feb24c"
   },
   {
-   "name": "Hills District",
+   "name": "North",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -68,7 +68,7 @@
     "color":"#7fcdbb"
   },
   {
-   "name": "Macarthur",
+   "name": "South",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -79,7 +79,7 @@
     "color":"#addd8e"
   },
   {
-   "name": "Northern Beaches",
+   "name": "West Central",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -90,18 +90,7 @@
     "color":"#fa9fb5"
   },
   {
-   "name": "Lower North Shore",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#c994c7"
-  },
-  {
-   "name": "Upper North Shore",
+   "name": "South West",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -112,7 +101,7 @@
     "color":"#bdbdbd"
   },
   {
-   "name": "Northern Surburbs",
+   "name": "North West",
    "children": [
      {"name": "English", "size":10000, "color":"#f03b20"},
      {"name": "Spanish", "size":2000, "color":"#fee8c8"},
@@ -121,73 +110,6 @@
      {"name": "Japanese", "size":2000, "color":"#3182bd"}
     ],
     "color":"#a1d99b"
-  },
-  {
-   "name": "Sourth-eastern Sydney",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#9ecae1"
-  },
-  {
-   "name": "South-western Sydney",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#a6bddb"
-  },
-  {
-   "name": "Southern Sydney",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#a6bddb"
-  },
-  {
-   "name": "St George",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#fdbb84"
-  },
-  {
-   "name": "Western Sydney",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#a8ddb5"
-  },
-  {
-   "name": "Greater Western Sydney",
-   "children": [
-     {"name": "English", "size":10000, "color":"#f03b20"},
-     {"name": "Spanish", "size":2000, "color":"#fee8c8"},
-     {"name": "Franch", "size":3000, "color":"#8856a7"},
-     {"name": "Greek", "size":1300, "color":"#1c9099"},
-     {"name": "Japanese", "size":2000, "color":"#3182bd"}
-    ],
-    "color":"#9ebcda"
   }
-
   ]
 }

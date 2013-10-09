@@ -3,7 +3,7 @@
  * first element is date in the format YYYY-MM-DD, and the second the
  * number of tweets e.g. res[0][0] = '2013-08-30' and res[0][1] = 500.
  */
- var server = "http://115.146.95.43/couchdb/";
+ var server = "http://115.146.95.43/couchdb/"
 function getNumberTweetsPerDay() {
 	var json = '';
 	$.ajax({
@@ -16,16 +16,23 @@ function getNumberTweetsPerDay() {
 		  async: false
 	});
 	
-	var res = new Array();
+	var data = [
+	    {
+	    	key: "Sydney",
+	    	values: []
+	    }
+	]
+	var ini = new Date(2013, 8, 18, 0, 0, 0, 0);
+	data[0].values.push([ini.getTime(), 0]);
+
 	for (var i = 0; i < json.rows.length; i++) {
 		var k = json.rows[i].key;
 		var v = json.rows[i].value;
-		res[i] = new Array(2);
-		res[i][0] = k[0] + '-' + ++k[1] + '-' + k[2];
-		res[i][1] = v;
+		var time = new Date(k[0], k[1], k[2], 0, 0, 0, 0);
+		var element = [time.getTime(), v];
+		data[0].values.push(element);
 	}
-	
-	return res;
+	return data;
 };
 
 /* Returns in a bi-dimensional array the number of tweets per hour, on a specific day. 
@@ -47,16 +54,22 @@ function getNumberTweetsPerHour(year, month, day) {
 		  async: false
 	});
 	
-	var res = new Array();
+	var data = [
+	    {
+	    	key: "Sydney",
+	    	values: []
+	    }
+	]
+	
 	for (var i = 0; i < json.rows.length; i++) {
 		var k = json.rows[i].key;
 		var v = json.rows[i].value;
-		res[i] = new Array(2);
-		res[i][0] = k[3];
-		res[i][1] = v;
+		var time = new Date(k[0], k[1], k[2], k[3], 0, 0, 0);
+		var element = [time.getTime(), v];
+		data[0].values.push(element);
 	}
 	
-	return res;
+	return data;
 };
 
 /* Returns all the points in the json object format that the d3 library requires
@@ -103,7 +116,7 @@ function getD3JSONCountingOn(year, month, day) {
 		  dataType: 'json',
 		  url: server + 'twittering_replica/_design/counting/_view/coordinates'
 		  	+ '?startkey=[' + year + ',' + month + ',' + day + ']&endkey=[' + year 
-		  	+ ',' + month + ',' + (day + 1) + ']',
+		  	+ ',' + month + ',' + day + ']',
 		  success: function(result) {
 			  doc = result;
 		  },

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<head>
+
+</head>
 <meta charset="utf-8">
 <style type="text/css">
 
@@ -13,6 +16,11 @@ span {
 
 <body>
   <h1>This is Analysis 4 LANGUAGES:</h1>
+
+  <button type="button" onclick="dayFunction('pre')">Previous Day</button>
+  <button type="button" onclick="dayFunction('next')">Next Day</button>
+  <div id ="dayTime">Wed Sep 19 2013</div>
+
   <table border="1" style="width:100%;">
     <tr height="630px">
       <td>
@@ -42,26 +50,18 @@ span {
     </tr>
 
     <tr>
-
       <td>
         <SPAN STYLE="background-color: #fc9272">City</SPAN>
-        <SPAN STYLE="background-color: #bcbddc">Canterbury-Bankstown</SPAN>
-        <SPAN STYLE="background-color: #fdae6b">Eastern Surburbs</SPAN>
-        <SPAN STYLE="background-color: #feb24c">The Forst</SPAN>
-        <SPAN STYLE="background-color: #fec44f">Hills District</SPAN>
+        <SPAN STYLE="background-color: #bcbddc">East</SPAN>
+        <SPAN STYLE="background-color: #fdae6b">North East</SPAN>
+        <SPAN STYLE="background-color: #feb24c">Inner North</SPAN>
+        <SPAN STYLE="background-color: #fec44f">North</SPAN>
+
         <SPAN STYLE="background-color: #7fcdbb">Inner West</SPAN>
-        <SPAN STYLE="background-color: #addd8e">Macarthur</SPAN>
-        <SPAN STYLE="background-color: #fa9fb5">Northern Beaches</SPAN>
-        <SPAN STYLE="background-color: #c994c7">Lower North Shore</SPAN>
-        <SPAN STYLE="background-color: #bdbdbd">Upper North Shore</SPAN>
-        <SPAN STYLE="background-color: #a1d99b">"Northern Surburbs</SPAN>
-        <SPAN STYLE="background-color: #9ecae1">Sourth-eastern Sydney</SPAN>
-        <SPAN STYLE="background-color: #a6bddb">South-western Sydney</SPAN>
-        <SPAN STYLE="background-color: #a6bddb">Southern Sydney</SPAN>
-        <SPAN STYLE="background-color: #fdbb84">St George</SPAN>
-        <SPAN STYLE="background-color: #a8ddb5">Western Sydney</SPAN>
-        <SPAN STYLE="background-color: #9ebcda">Greater Western Sydney</SPAN>
-        
+        <SPAN STYLE="background-color: #addd8e">South</SPAN>
+        <SPAN STYLE="background-color: #fa9fb5">West Central</SPAN>
+        <SPAN STYLE="background-color: #bdbdbd">South West</SPAN>
+        <SPAN STYLE="background-color: #a1d99b">North West</SPAN>
       </td>
       <td width = "50%">
         <SPAN STYLE="background-color: #f03b20">English</SPAN>
@@ -71,7 +71,7 @@ span {
         <SPAN STYLE="background-color: #3182bd">Japanese</SPAN>
       </td>
     </tr>
-    <tr>
+    <tr height = "500px">
       <td colspan=2>
         <form>
           <label><input type="radio" name="mode" value="size"> Size</label>
@@ -94,8 +94,9 @@ span {
     <script src="./lib/nvd3/src/models/stackedArea.js"></script>
     <script src="./lib/nvd3/src/models/stackedAreaChart.js"></script>
     <script src="./lib/nvd3/test/testScript.js"></script>
+    
     <script>
-
+    var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 
     var selectDropDown = document.getElementById('select');
     selectDropDown.onchange= function(e) {
@@ -283,5 +284,21 @@ d3.json("./data/languages.json", function(error, root) {
 function stash(d) {
   d.x0 = d.x;
   d.dx0 = d.dx;
+}
+  function dayFunction(var1)
+  { 
+  // 1379512800000 18th
+  if (ini.getTime() >= 1379512800000 ){
+    switch (var1){
+      case "pre":
+      ini.setTime(ini.getTime() - 24 * 60 * 60 *1000)
+      document.getElementById("dayTime").innerHTML = ini.toDateString();
+      break;
+      case "next":
+      ini.setTime(ini.getTime() + 24 * 60 * 60 *1000)
+      document.getElementById("dayTime").innerHTML = ini.toDateString();
+      break;
+    }
+  }
 }
 </script>

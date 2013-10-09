@@ -64,7 +64,7 @@ text {
   <script type="text/javascript" src="js/counting.js"></script>
   <script>
 
-  var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
+   var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 
   nv.addGraph(function() {  
    var chart = nv.models.cumulativeLineChart()
@@ -73,19 +73,18 @@ text {
    .y(function(d) { return d[1] })
    .color(d3.scale.category10().range())
    .average(function(d) { return d.mean/100; })
- //.transitionDuration(300)
- .clipVoronoi(false)
- .showControls(false);
+   .clipVoronoi(false)
+   .showControls(false);
 
- chart.xAxis
- .tickFormat(function(d) {
-  return d3.time.format('%m/%d/%y')(new Date(d))
-});
+   chart.xAxis
+   .tickFormat(function(d) {
+    return d3.time.format('%m/%d/%y')(new Date(d))
+  });
 
- chart.yAxis
- .tickFormat(d3.format(',1'));
+   chart.yAxis
+   .tickFormat(d3.format(',1'));
 
- d3.select('#chart1 svg')
+   d3.select('#chart1 svg')
  .datum(getNumberTweetsPerDay())//getNumberTweetsPerDay
  .call(chart);
 
@@ -120,14 +119,95 @@ text {
       case "pre":
       ini.setTime(ini.getTime() - 24 * 60 * 60 *1000)
       document.getElementById("dayTime").innerHTML = ini.toDateString();
+      nv.addGraph(function() {  
+       var chart = nv.models.cumulativeLineChart()
+       .useInteractiveGuideline(true)
+       .x(function(d) { return d[0] })
+       .y(function(d) { return d[1] })
+       .color(d3.scale.category10().range())
+       .average(function(d) { return d.mean/100; })
+       .clipVoronoi(false)
+       .showControls(false);
+
+       chart.xAxis
+       .tickFormat(function(d) {
+        return d3.time.format('%m/%d/%y')(new Date(d))
+      });
+
+       chart.yAxis
+       .tickFormat(d3.format(',1'));
+
+
+       console.error("pre",getNumberTweetsPerHour(2013, 9, 25))
+
+
+       d3.select('#chart1 svg')
+          .datum(getNumberTweetsPerHour(2013, 9, 25))//getNumberTweetsPerDay
+          .call(chart);
+          nv.utils.windowResize(chart.update);
+          chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+          return chart;
+        });
+
       break;
+
+
       case "next":
       ini.setTime(ini.getTime() + 24 * 60 * 60 *1000)
       document.getElementById("dayTime").innerHTML = ini.toDateString();
-      break;
+      nv.addGraph(function() {  
+       var chart = nv.models.cumulativeLineChart()
+       .useInteractiveGuideline(true)
+       .x(function(d) { return d[0] })
+       .y(function(d) { return d[1] })
+       .color(d3.scale.category10().range())
+       .average(function(d) { return d.mean/100; })
+       .clipVoronoi(false)
+       .showControls(false);
+
+       chart.xAxis
+       .tickFormat(function(d) {
+        return d3.time.format('%m/%d/%y')(new Date(d))
+      });
+
+       chart.yAxis
+       .tickFormat(d3.format(',1'));
+       console.error("next",getNumberTweetsPerHour(ini.getYear(), ini.getMonth(), ini.getDate()))
+       d3.select('#chart1 svg')
+          .datum(getNumberTweetsPerHour(ini.getYear(), ini.getMonth(), ini.getDate()))//getNumberTweetsPerDay
+          .call(chart);
+          nv.utils.windowResize(chart.update);
+          chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+          return chart;
+        });      nv.addGraph(function() {  
+         var chart = nv.models.cumulativeLineChart()
+         .useInteractiveGuideline(true)
+         .x(function(d) { return d[0] })
+         .y(function(d) { return d[1] })
+         .color(d3.scale.category10().range())
+         .average(function(d) { return d.mean/100; })
+         .clipVoronoi(false)
+         .showControls(false);
+
+         chart.xAxis
+         .tickFormat(function(d) {
+          return d3.time.format('%m/%d/%y')(new Date(d))
+        });
+
+         chart.yAxis
+         .tickFormat(d3.format(',1'));
+
+         d3.select('#chart1 svg')
+          .datum(getNumberTweetsPerHour(ini.getYear(), ini.getMonth(), ini.getDate()))//getNumberTweetsPerDay
+          .call(chart);
+          nv.utils.windowResize(chart.update);
+          chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+          return chart;
+        });
+
+        break;
+      }
     }
   }
-}
-
 
 </script>

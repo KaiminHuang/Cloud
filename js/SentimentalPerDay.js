@@ -43,7 +43,7 @@ function sentimentalPerDay(year, month,day) {
 		"extent" : [150.821457,-34.026391,151.319962,-33.724244],
 		"features" : []
 	};
-	alert (json.rows.length);	
+//	alert (json.rows.length);	
 	for (var i = 0; i < json.rows.length; i++) {
 		var point = {
 			"geometry": {
@@ -63,7 +63,8 @@ function sentimentalPerDay(year, month,day) {
 //After it convert in another Json object in the format that Saman needs
 //Input: No parameters
 //Output: Json object 
-function sentimental() {	
+function sentimental() {
+	alert("I'm Called");	
 	var json = '';
 	$.ajax({
 		  type: 'GET',
@@ -85,14 +86,14 @@ function sentimental() {
 		"extent" : [150.821457,-34.026391,151.319962,-33.724244],
 		"features" : []
 	};
-	alert (json.rows.length);	
+	//alert (json.rows.length);	
 	for (var i = 0; i < json.rows.length; i++) {
 		var point = {
 			"geometry": {
 				"type" : "point",
-				"coordinates" : [json.rows[i].value[1],json.rows[i].value[2]],
-				"sentiment" : json.rows[i].value[3]
-			}		
+				"coordinates" : [json.rows[i].value[1],json.rows[i].value[2]]
+			},
+		 "sentiment" : json.rows[i].value[3]		
 		}
 		//alert('Linea:'+ point.geometry.sentiment + "\n" + point.geometry.coordinates);
 		res.features.push(point);

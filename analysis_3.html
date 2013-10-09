@@ -39,10 +39,30 @@ var data = [
 {word: "than", num:100},
 {word: "this", num:123},
 ]
+
 var data = getWordFrequency();
 console.error("data",data)
 
-d3.layout.cloud().size([300, 300])
+for (var i in data){
+  if (data[i].num > 3000){
+    data[i].num = 200;
+  }
+  else if (data[i].num > 2500){
+    data[i].num = 160;
+  }
+  else if (data[i].num > 2000){
+    data[i].num = 120;
+  }
+  else if (data[i].num > 1500){
+    data[i].num = 80;
+  }else{
+    data[i].num = 40;
+  }
+}
+console.error("data",data)
+
+
+d3.layout.cloud().size([2500, 1500])
 .words(data.map(function(d) {
     return {text: d.word, size: d.num };//10 + Math.random() * 90
   }))
@@ -58,7 +78,7 @@ function draw(words) {
   .attr("width", 1000)
   .attr("height", 1000)
   .append("g")
-  .attr("transform", "translate(150,150)")
+  .attr("transform", "translate(600,300)")
   .selectAll("text")
   .data(words)
   .enter().append("text")

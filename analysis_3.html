@@ -41,7 +41,7 @@ var data = [
 ]
 
 var data = getWordFrequency();
-console.error("data",data)
+// console.error("data",data)
 
 for (var i in data){
   if (data[i].num > 3000){
@@ -59,7 +59,7 @@ for (var i in data){
     data[i].num = 40;
   }
 }
-console.error("data",data)
+// console.error("data",data)
 
 
 d3.layout.cloud().size([2500, 1500])
@@ -76,7 +76,7 @@ d3.layout.cloud().size([2500, 1500])
 function draw(words) {
   d3.select("#word")
   .attr("width", 1000)
-  .attr("height", 1000)
+  .attr("height", 2000)
   .append("g")
   .attr("transform", "translate(600,300)")
   .selectAll("text")

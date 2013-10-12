@@ -1,4 +1,4 @@
-var server = "http://115.146.85.154/couchdb/";
+var server = "couchdb/";
 function getWordFrequency() {
 	var json = '';	
 	$.ajax({

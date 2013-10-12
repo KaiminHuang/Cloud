@@ -13,8 +13,8 @@
 			@import url("http://polymaps.org/style.css");
 			
 			div.map {
-				width: 47%;
-				height: 600px;
+				width: 430px;
+				height: 430px;
 				margin-right: 15px;
 				float: left;
 			}
@@ -53,7 +53,7 @@
 			}
 			
 			var po = org.polymaps,
-				hexset, hexI = 20, map, focusMap, data, scale, countMax,
+				hexset, hexI = 15, map, focusMap, data, scale, countMax,
 				numClasses = 7,
 				xMin, xMax, yMin, yMax,
 				cbScheme = "OrRd",
@@ -108,8 +108,8 @@
 			
 			function load_json()
 			{
-//				d3.json( dataURL, function( d )
-//				{
+				d3.json( dataURL, function( d )
+				{
 					
 					d = getD3JSONCounting();
 
@@ -126,20 +126,20 @@
 							{ lat : bounds[1], lon : bounds[0] },
 							{ lat : bounds[3], lon : bounds[2] }
 						]
-					).zoom(11);
+					).zoom(10.5);
 					
 					focusMap.extent(
 						[
 							{ lat : bounds[1], lon : bounds[0] },
 							{ lat : bounds[3], lon : bounds[2] }
 						]
-					).zoom(15.72);
+					).zoom(15.12);
 					
 					
 					//draw_raw_points();
 					generate_hexgrid();
 					generate_hexgrid_representations();
-//				});
+				});
 			};
 			
 			function draw_raw_points()

@@ -1,5 +1,5 @@
 
-var server = "http://115.146.85.154/couchdb/";
+var server = "couchdb/";
 
 function getTop5Positive() {
 	var json = '';

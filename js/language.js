@@ -1,6 +1,15 @@
 
-var server = "http://115.146.85.154/couchdb/";
+/* Location of the couchdb proxy. Please make sure a proxy is configured
+ * for the apache server pointed by this URL.
+ */
+var server = "couchdb/";
 
+/* For detail on the output json objects these function return please look at
+ * the data input specifications for the d3 libraries.
+ */
+
+/* Returns the amounts of tweets per language per Sydney Region, ignoring English.
+ * It uses the spatial index of Geocouch to query the bboxes. */
 function getLanguageTweetsPerRegion() {
 	var json = '';
 	var bboxes = [
@@ -52,11 +61,11 @@ function getLanguageTweetsPerRegion() {
 			var v = json.rows[j].value;
 			var lang = codeToString(v[0]);
 			
-			//Ignore the small languages
-			if (!filterMainLanguages(v[0]))
+			//Ignore the small languages and English
+			if (!filterMainLanguages(v[0]) || v[0] == 'en')
 				continue;
 			
-			//Reduce the values using our own sum.
+			//Reduce the values using our own sum, no reduce for spatial views.
 			if (child.children.length == 0) { //Insert the first child
 				var grandchild = {
 					"name": lang,
@@ -84,7 +93,94 @@ function getLanguageTweetsPerRegion() {
 			res.children.push(child);
 		}
 	}
+	
 	return res;
+};
+
+/* Returns the number of tweets generated per language, per day */
+function getLanguageTweetsPerDay() {
+	var json = '';
+	$.ajax({
+		  type: 'GET',
+		  dataType: 'json',
+		  url: server + 'twittering_replica/_design/language/_view/per_hour?group_level=4',
+		  success: function(result) {
+			  json = result;
+		  },
+		  async: false
+	});
+	
+	var data = [];
+	
+	var lastLang = '';
+	var lastChild = {};
+	for (var i = 0; i < json.rows.length; i++) {
+		var k = json.rows[i].key;
+		var v = json.rows[i].value;
+		var lang = codeToString(k[0]);
+		
+		if (lastLang != lang) {
+			var child = {
+			    key: lang,
+			    values: []
+			}
+			data.push(child);
+			lastChild = child;
+		}
+			
+		var time = new Date(k[1], k[2], k[3], 0, 0, 0, 0);
+		var element = [time.getTime(), v];
+		lastChild.values.push(element);
+		
+		lastLang = lang;
+	}
+	
+	return data;
+};
+
+/* Returns the number of tweets generated per language, per hour on a specific day.
+ * The day is specified in the arguments year, month and day */ 
+function getLanguageTweetsPerHour(year, month, day) {
+	var json = '';
+	month--;
+	$.ajax({
+		  type: 'GET',
+		  dataType: 'json',
+		  url: server + 'twittering_replica/_design/language/_view/per_day_range?group_level=5'
+		  	+ '&startkey=[' + year + ',' + month + ',' + day + ']&endkey=[' + year 
+		  	+ ',' + month + ',' + (day + 1) + ']',
+		  success: function(result) {
+			  json = result;
+		  },
+		  async: false
+	});
+	
+	var data = [];
+	
+	var lastLang = '';
+	var lastChild = {};
+	for (var i = 0; i < json.rows.length; i++) {
+		var k = json.rows[i].key;
+		var v = json.rows[i].value;
+		var lang = codeToString(k[3]);
+		
+		if (lastLang != lang) {
+			var child = {
+			    key: lang,
+			    values: []
+			}
+			data.push(child);
+			lastChild = child;
+		}
+			
+		var time = new Date(k[0], k[1], k[2], k[4], 0, 0, 0); //k[3] is language code
+		var element = [time.getTime(), v];
+		lastChild.values.push(element);
+		
+		lastLang = lang;
+	}
+	
+	return data;
 };
 
 /* Returns all the points in the json object format that the d3 library requires
@@ -98,8 +194,12 @@ function getD3JSONLanguage(language) {
 		  type: 'GET',
 		  dataType: 'json',
 		  url: server + 'twittering_replica/_design/language/_view/coordinates',
+		  beforeSend: function(){
+		  	$("iframe body").append('<img id="loading" src="js/loading.gif" />');
+		  },
 		  success: function(result) {
-			  doc = result;
+		  	$("#loading").remove();
+			doc = result;
 		  },
 		  async: false
 	});

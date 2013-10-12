@@ -1,0 +1,19 @@
+{
+   "_id": "_design/sentimental",
+   "language": "javascript",
+   "views": {
+       "SentimentalTotal": {
+           "map": "function(doc) { \n  var type='';\n  if(doc.sentiment != null  && doc.lang=='en'){\n\tif (doc.sentiment >0){type='Positive'}\n\tif (doc.sentiment <0){type='Negative'}\n\tif (doc.sentiment ==0){type='Neutral'}\n  \temit(type, 1); \n  }\n }",
+           "reduce": "function (key, values, rereduce) {\n    return sum(values);\n}"
+       },
+       "sentimentalPerDay": {
+           "map": "function(doc) { \n  var d= new Date(doc.created_at);\n  if(doc.sentiment != null  && doc.lang=='en')\n    emit([d.getFullYear(), d.getMonth(), d.getDate()], [doc.geo.type, doc.coordinates.coordinates[0],doc.coordinates.coordinates[1],doc.sentiment]); \n }"
+       },
+       "sentimentalPerWord": {
+           "map": "function(doc) { \n  var str=doc.text; \n  var n=str.match(/navy/g);\n  if(n && doc.lang=='en')\n    emit(doc._id, [doc.coordinates.coordinates[0],doc.coordinates.coordinates[1],doc.sentiment]); \n }"
+       },
+       "by_sentiment": {
+           "map": "function(doc) {\n   emit([doc.sentiment, doc._id], [doc.user.screen_name, doc.text]);\n}"
+       }
+   }
+}

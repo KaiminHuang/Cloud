@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="./lib/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
+<style>
+
+body {
+	overflow-y:scroll;
+}
+
+text {
+	font: 12px sans-serif;
+}
+
+.mypiechart {
+	width: 500px;
+	border: 2px;
+}
+</style>
+<body class='with-3d-shadow with-transitions'>
+
+	<h1>This is Analysis 2 SENTIMENT:</h1>
+	<table border="1" style="width:100%;">
+		<tr height="630px">
+			<td colspan="2">
+				<iframe src="sentiment.html" style="width:100%; height:100%;">
+				Here You should be able to see the map, if not; Try another browser that supports iFrame.
+			</iframe>
+		</td>    
+		</tr>
+		<tr height ="600px">
+			<th rowspan="2" style="width:50%;"><svg id="test1" class="mypiechart"></th>
+			<td height = "200px" ><h id= "id1">TOP 5 positive tweets<h></td>
+		</tr>
+		<tr>
+			<td height="200px" ><h id= "top5n">TOP 5 negative tweets</h></td>
+		</tr>
+	</table>
+
+
+	<script src="./lib/nvd3/lib/d3.v3.js"></script>
+	<script src="./lib/nvd3/nv.d3.js"></script>
+	<script src="./lib/nvd3/src/models/legend.js"></script>
+	<script src="./lib/nvd3/src/models/pie.js"></script>
+	<script src="./lib/nvd3/src/models/pieChart.js"></script>
+	<script src="./lib/nvd3/src/utils.js"></script>
+	<script src="./js/jquery/jquery.js"></script>
+	<script src="./js/sentimentalTotal.js"></script>
+	<script src="./js/sentiment.js"></script>
+
+	<script>
+	var pos = getTop5Positive();
+	var neg = getTop5Negative();
+	console.error(pos);
+
+      document.getElementById("id1").innerHTML = "<p>"+pos[0][1] + ": " +pos[0][2] +"</p>"+
+      "<p>"+pos[1][1] + ": " +pos[1][2] +"</p>"+
+      "<p>"+pos[2][1] + ": " +pos[2][2]+"</p>"+
+      "<p>"+pos[3][1] + ": " +pos[3][2]+"</p>"+
+      "<p>"+pos[4][1] + ": " +pos[4][2]+"</p>";
+      document.getElementById("top5n").innerHTML = neg[0][1] + ": " +neg[0][2];
+
+
+	var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
+	var testdata = [
+	{
+		key: "Positive",
+		y: 5
+	},
+	{
+		key: "Negative",
+		y: 2
+	},
+	{
+		key: "Medium",
+		y: 9
+	}
+	];
+
+	// testdata = sentimentalTotal();
+	testdata = sentimentalTotal();
+
+	nv.addGraph(function() {
+		var width = 500,
+		height = 500;
+
+		var chart = nv.models.pieChart()
+		.x(function(d) { return d.key })
+		.y(function(d) { return d.y })
+		.color(d3.scale.category10().range())
+		.width(width)
+		.height(height);
+
+		d3.select("#test1")
+		.datum(testdata)
+		.transition().duration(1200)
+		.attr('width', width)
+		.attr('height', height)
+		.call(chart);
+
+		chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+		return chart;
+	});
+	</script>

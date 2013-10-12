@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <link href="./lib/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
-<style>
+<style type="text/css">
 
 body {
 	overflow-y:scroll;
@@ -15,29 +15,43 @@ text {
 	width: 500px;
 	border: 2px;
 }
+h3{margin: 0;}
+.toplist {
+	padding:20px 20px 0px 20px; 
+	height:200px;
+}
+li{margin-bottom: 10px;}
+ul{text-align: justify;}
 </style>
 <body class='with-3d-shadow with-transitions'>
 
 	<h1>This is Analysis 2 SENTIMENT:</h1>
-
-	<button type="button" onclick="dayFunction('pre')">Previous Day</button>
-	<button type="button" onclick="dayFunction('next')">Next Day</button>
-	<div id ="dayTime">Wed Sep 19 2013</div>
-
-	<table border="0" style="width:100%;">
-		<tr height="630px">
+	<table border="1" style="width:100%;">
+		<tr height="640px">
 			<td colspan="2">
-				<iframe src="sentiment.html" style="width:100%; height:100%;" scrolling="no" frameBorder="0">
-				Here You should be able to see the map, if not; Try another browser that supports iFrame.
-			</iframe>
-		</td>    
+				<iframe src="sentiment.html" style="width:100%; height:100%;overflow:hidden;" scrolling="no">
+					Here You should be able to see the map, if not; Try another browser that supports iFrame.
+				</iframe>
+			</td>    
 		</tr>
-		<tr height ="600px">
-			<th rowspan="2" style="width:50%;"><svg id="test1" class="mypiechart"></th>
-			<td height = "200px"><h >TOP 5 positive tweets<h></td>
-		</tr>
-		<tr>
-			<td height="200px"><h>TOP 5 negative tweets</h></td>
+		<tr height ="500px">
+			<th rowspan="2" style="width:50%;">
+				<svg id="test1" class="mypiechart"></svg>
+			</th>
+			<td>
+				<table>
+					<tr>
+						<td class="toplist" id="top5p">
+							<h3>TOP 5 positive tweets</h3>
+						</td>
+					</tr>
+					<tr>
+						<td class="toplist" height:200px;" id= "top5n">
+							<h3>TOP 5 negative tweets</h3>
+						</td>
+					</tr>
+				</table>
+			</td>
 		</tr>
 	</table>
 
@@ -50,7 +64,26 @@ text {
 	<script src="./lib/nvd3/src/utils.js"></script>
 	<script src="./js/jquery/jquery.js"></script>
 	<script src="./js/sentimentalTotal.js"></script>
+	<script src="./js/sentiment.js"></script>
+
 	<script>
+	var pos = getTop5Positive();
+	var neg = getTop5Negative();
+	//console.error(pos);
+
+      $("#top5p").append("<ul><li>"+pos[0][1] + " (" + pos[0][0] + "): " +pos[0][2] +"</li>"+
+	      "<li>"+pos[1][1]+ " (" + pos[1][0] + "): " +pos[1][2] +"</li>"+
+	      "<li>"+pos[2][1]+ " (" + pos[2][0] + "): " +pos[2][2]+"</li>"+
+	      "<li>"+pos[3][1]+ " (" + pos[3][0] + "): " +pos[3][2]+"</li>"+
+	      "<li>"+pos[4][1]+ " (" + pos[4][0] + "): " +pos[4][2]+"</li></ul>");
+      
+      $("#top5n").append("<ul><li>"+neg[0][1] + " (" + neg[0][0] + "): " +neg[0][2] +"</li>"+
+	      "<li>"+neg[1][1]+ " (" + neg[1][0] + "): " +neg[1][2] +"</li>"+
+	      "<li>"+neg[2][1]+ " (" + neg[2][0] + "): " +neg[2][2]+"</li>"+
+	      "<li>"+neg[3][1]+ " (" + neg[3][0] + "): " +neg[3][2]+"</li>"+
+	      "<li>"+neg[4][1]+ " (" + neg[4][0] + "): " +neg[4][2]+"</li></ul>");
+
+
 	var ini = new Date(2013, 8, 19, 0, 0, 0, 0);
 	var testdata = [
 	{
@@ -67,46 +100,29 @@ text {
 	}
 	];
 
-	// testdata = sentimentalTotal();
-	testdata = sentimentalTotal();
-	console.error("testdata",testdata)
+	 testdata = sentimentalTotal();
+	 testdata = sentimentalTotal();
 
-	nv.addGraph(function() {
-		var width = 500,
-		height = 500;
+	 nv.addGraph(function() {
+		 	var width = 500,
+		 	height = 500;
 
-		var chart = nv.models.pieChart()
-		.x(function(d) { return d.key })
-		.y(function(d) { return d.y })
-		.color(d3.scale.category10().range())
-		.width(width)
-		.height(height);
+		 	var chart = nv.models.pieChart()
+		 	.x(function(d) { return d.key })
+		 	.y(function(d) { return d.y })
+		 	.color(d3.scale.category10().range())
+		 	.width(width)
+		 	.height(height);
 
-		d3.select("#test1")
-		.datum(testdata)
-		.transition().duration(1200)
-		.attr('width', width)
-		.attr('height', height)
-		.call(chart);
+		 	d3.select("#test1")
+		 	.datum(testdata)
+		 	.transition().duration(1200)
+		 	.attr('width', width)
+		 	.attr('height', height)
+		 	.call(chart);
 
-		chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+		 	chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
 
-		return chart;
-	});
-	  function dayFunction(var1)
-  { 
-  // 1379512800000 18th
-  if (ini.getTime() >= 1379512800000 ){
-    switch (var1){
-      case "pre":
-      ini.setTime(ini.getTime() - 24 * 60 * 60 *1000)
-      document.getElementById("dayTime").innerHTML = ini.toDateString();
-      break;
-      case "next":
-      ini.setTime(ini.getTime() + 24 * 60 * 60 *1000)
-      document.getElementById("dayTime").innerHTML = ini.toDateString();
-      break;
-    }
-  }
-}
+		 	return chart;
+	 });
 	</script>

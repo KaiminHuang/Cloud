@@ -1,0 +1,10 @@
+{
+   "_id": "_design/TweetsPerDayPerHour",
+   "language": "javascript",
+   "views": {
+       "TweetsPerDayPerHour": {
+           "map": "function(doc) {\n  var d= new Date(doc.created_at);\n  emit([d.toLocaleDateString(),d.getHours(),doc.coordinates.coordinates[0],doc.coordinates.coordinates[1]], 1);\n}\n//selecting Grouping: Level 1 it will display a list per day\n//selecting Grouping: Level 2 it will display a list per hour per day",
+           "reduce": "function (key, values, rereduce) {\n    return sum(values);\n}"
+       }
+   }
+}

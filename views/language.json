@@ -1,0 +1,20 @@
+{
+   "_id": "_design/language",
+   "language": "javascript",
+   "views": {
+       "coordinates": {
+           "map": "function(doc) {\n   var d = new Date(doc.created_at);   \n   //Coordinate 0 is long, and coordinate 1 is lat\n   emit([d.getFullYear(), d.getMonth(), d.getDate(), doc.lang], \n\t[doc.coordinates.coordinates[0], \n\tdoc.coordinates.coordinates[1]]);\n}"
+       },
+       "per_hour": {
+           "map": "function(doc) {\n  var d = new Date(doc.created_at);\n  emit([doc.lang, d.getFullYear(), d.getMonth(), d.getDate(), d.getHours()], 1);\n}",
+           "reduce": "function(keys, values, rereduce) {\n  return sum(values)\n}"
+       },
+       "per_day_range": {
+           "map": "function(doc) {\n  var d = new Date(doc.created_at);\n  emit([d.getFullYear(), d.getMonth(), d.getDate(), doc.lang, d.getHours()], 1);\n}",
+           "reduce": "function(keys, values, rereduce) {\n  return sum(values)\n}"
+       }
+   },
+   "spatial": {
+       "points": "function(doc) {\n    if (doc.coordinates.coordinates) {\n        emit({\n            type: \"Point\",\n            coordinates: [doc.coordinates.coordinates[0], doc.coordinates.coordinates[1]]\n        }, [doc.lang]);\n    }};"
+   }
+}
